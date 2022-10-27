@@ -8,24 +8,28 @@ namespace EmployeeWageProblems
 {
     public class EmpWage
     {
-        const int WAGE_PER_HR = 20, FULL_DAY_HR = 8;
+        const int WAGE_PER_HR = 20, FULL_DAY_HR = 8, HALF_DAY_HR = 4, IS_PRESENT = 0, IS_FULL_TIME = 1, IS_HALF_TIME = 2;
         Random random = new Random();
         public void Attendance()
         {
-            int check = random.Next(0, 2);
-            if (check == 0)
-                Console.WriteLine("Employee is Present.");
+            int empCheck = random.Next(0, 2);
+            if (empCheck == IS_PRESENT)
+                Console.WriteLine("Employee is present");
             else
                 Console.WriteLine("Employee is absent");
         }
-
         public void Wage()
         {
-            int salary = 0;
-            int check = random.Next(0, 2);
-            if (check == 0)
-                salary = WAGE_PER_HR * FULL_DAY_HR;
-            Console.WriteLine("Wage of the Employee is : " + salary);
+            int dailyEmpWage = 0, empHrs = 0;
+            int empCheck = random.Next(0, 3);
+            if (empCheck == IS_FULL_TIME)
+                empHrs = FULL_DAY_HR;
+            else if (empCheck == IS_HALF_TIME)
+                empHrs = HALF_DAY_HR;
+            else
+                empHrs = 0;
+            dailyEmpWage = WAGE_PER_HR * empHrs;
+            Console.WriteLine("Daily emp wage" + dailyEmpWage);
         }
     }
 }
